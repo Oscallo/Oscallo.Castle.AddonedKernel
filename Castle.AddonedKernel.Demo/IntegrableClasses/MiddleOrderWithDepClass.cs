@@ -13,18 +13,16 @@
  * limitations under the License.
  */
 
-using System.Windows;
+using Castle.AddonedKernel.Integrators;
+using Castle.MicroKernel.Registration;
 
-namespace Castle.AddonedKernel.Demo
+namespace Castle.AddonedKernel.Demo.IntegrableClasses
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
-    {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
-    }
+	public class MiddleOrderWithDepClass : IMiddleOrderWithDepClass, IIntegrator
+	{
+		public void Integrate(IRegistrar injector) 
+		{
+			injector.Register(Component.For<ILowerOrderClass>().ImplementedBy<LowerOrderClass>().LifeStyle.Singleton);
+		}
+	}
 }

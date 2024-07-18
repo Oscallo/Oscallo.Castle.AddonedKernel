@@ -13,18 +13,22 @@
  * limitations under the License.
  */
 
-using System.Windows;
+using System.Diagnostics;
+using System.Reflection;
 
-namespace Castle.AddonedKernel.Demo
+namespace Castle.AddonedKernel.Activators
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
+    [DebuggerDisplay("{MethodInfo.ToString()} | {MethodTypeEnum.ToString()}")]
+    public struct CalleableMethodInfo
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        public MethodInfo MethodInfo { get; set; }
+
+        public object[]? Arguments { get; set; }
+
+        public CalleableMethodCallTypeEnum MethodCallTypeEnum { get; set; }
+
+        public CalleableMethodTypeEnum MethodTypeEnum { get; set; }
+
+        public CalleableMethodArgumentsEnum MethodArgumentsEnum { get; set; }
     }
 }

@@ -13,18 +13,11 @@
  * limitations under the License.
  */
 
-using System.Windows;
-
-namespace Castle.AddonedKernel.Demo
+namespace Castle.AddonedKernel.Activators
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
+    public enum CalleableMethodTypeEnum
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        Static,
+        Examplar
     }
 }

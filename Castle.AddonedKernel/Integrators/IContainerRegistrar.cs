@@ -13,18 +13,16 @@
  * limitations under the License.
  */
 
-using System.Windows;
+using Castle.AddonedKernel.LifeCyrcle;
+using Castle.Windsor;
+using System;
 
-namespace Castle.AddonedKernel.Demo
+namespace Castle.AddonedKernel.Integrators
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
+    public interface IContainerRegistrar : ILifeCyrcleSupport, IDisposable
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        void AddChildContainer(IWindsorContainer windsorContainer);
+
+        void RemoveChildContainer(IWindsorContainer windsorContainer);
     }
 }

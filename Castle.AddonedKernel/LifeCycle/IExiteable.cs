@@ -15,16 +15,10 @@
 
 using System.Windows;
 
-namespace Castle.AddonedKernel.Demo
+namespace Castle.AddonedKernel.LifeCyrcle
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
+    public interface IExiteable
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        void OnExit(ExitEventArgs e);
     }
 }

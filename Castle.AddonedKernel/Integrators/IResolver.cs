@@ -13,18 +13,18 @@
  * limitations under the License.
  */
 
-using System.Windows;
+using Castle.AddonedKernel.LifeCyrcle;
+using Castle.MicroKernel;
+using System;
 
-namespace Castle.AddonedKernel.Demo
+namespace Castle.AddonedKernel.Integrators
 {
-	/// <summary>
-	/// Interaction logic for MainWindow.xaml
-	/// </summary>
-	public partial class MainWindow : Window
+    public interface IResolver : ILifeCyrcleSupport, IDisposable
     {
-        public MainWindow()
-        {
-            InitializeComponent();
-        }
+        bool HasComponent<T>();
+
+        bool HasFacility<TFacility>() where TFacility : IFacility, new();
+
+        T Resolve<T>();
     }
 }
