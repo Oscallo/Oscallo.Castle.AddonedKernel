@@ -13,9 +13,16 @@
  * limitations under the License.
  */
 
+using Castle.AddonedKernel.Integrators;
+using Castle.MicroKernel.Registration;
+
 namespace Castle.AddonedKernel.Demo.IntegrableClasses
 {
-	public class LowerOrderClass : ILowerOrderClass
+	public class MiddleOrderWithDepClass : IMiddleOrderWithDepClass, IIntegrator
 	{
+		public void Integrate(IRegistrar injector) 
+		{
+			injector.Register(Component.For<ILowerOrderClass>().ImplementedBy<LowerOrderClass>().LifeStyle.Singleton);
+		}
 	}
 }

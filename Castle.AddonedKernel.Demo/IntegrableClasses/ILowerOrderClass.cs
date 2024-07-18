@@ -15,7 +15,7 @@
 
 namespace Castle.AddonedKernel.Demo.IntegrableClasses
 {
-	internal class MiddleOrderClass
+	public interface ILowerOrderClass
 	{
 	}
 }

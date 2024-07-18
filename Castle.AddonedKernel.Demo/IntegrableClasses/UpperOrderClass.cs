@@ -13,9 +13,28 @@
  * limitations under the License.
  */
 
+using Castle.AddonedKernel.Integrators;
+using Castle.MicroKernel.Registration;
+
 namespace Castle.AddonedKernel.Demo.IntegrableClasses
 {
-	internal class UpperOrderClass
+	public class UpperOrderClass : IUpperOrderClass, IIntegrator
 	{
+		private IMiddleOrderWithDepClass? _IMiddleOrderWithDepClass;
+		private IMiddleOrderWithoutDepClass? _IMiddleOrderWithoutDepClass;
+
+		public UpperOrderClass() { }
+
+		public UpperOrderClass(IMiddleOrderWithDepClass middleOrderWithDepClass, IMiddleOrderWithoutDepClass middleOrderWithoutDepClass) 
+		{
+			this._IMiddleOrderWithDepClass = middleOrderWithDepClass;
+			this._IMiddleOrderWithoutDepClass = middleOrderWithoutDepClass;
+		}
+
+		public void Integrate(IRegistrar injector) 
+		{
+			injector.Register(Component.For<IMiddleOrderWithDepClass>().ImplementedBy<MiddleOrderWithDepClass>().LifeStyle.Singleton);
+			injector.Register(Component.For<IMiddleOrderWithoutDepClass>().ImplementedBy<MiddleOrderWithoutDepClass>().LifeStyle.Singleton);
+		}
 	}
 }
