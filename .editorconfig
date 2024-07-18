@@ -1,0 +1,456 @@
+# Удалите строку ниже, если вы хотите наследовать параметры .editorconfig из каталогов, расположенных выше в иерархии
+root = true
+
+# Файлы проекта
+[*]
+
+  # Для всех файлов используем windows-совместимые переносы строк
+  end_of_line = crlf
+  insert_final_newline = true
+
+  ## Установка кодировки
+  charset = utf-8-with-bom
+
+  # XML project files
+  [*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
+    
+    # Отступы и интервалы
+    indent_size = 2
+    indent_style = space
+
+  # XML config files
+  [*.{props,targets,ruleset,config,nuspec,resx,vsixmanifest,vsct}]
+    
+    # Отступы и интервалы
+    indent_size = 2
+    indent_style = space
+
+  # Файлы XAML
+  [*.xaml]
+  
+    # Правила стиля кода
+    
+      # Языковые и ненужные правила кода
+      
+        # Используйте явно указанное имя кортежа [IDE0033]
+        dotnet_style_explicit_tuple_names = true
+
+  # JSON files
+  [*.json]
+  
+    # Отступы и интервалы
+    indent_size = 2
+        
+  # Powershell files
+  [*.ps1]
+  
+    # Отступы и интервалы
+    indent_size = 2
+        
+  # Shell script files
+  [*.sh]
+  
+    # Для всех файлов используем UNIX-совместимые переносы строк
+    end_of_line = lf
+  
+    # Отступы и интервалы
+    indent_size = 2
+
+  # Файлы C# и VB 
+  [*.{cs,vb}]
+
+    ## Длина строки
+    max_line_length = 200
+
+    # Отступы и интервалы
+    indent_style = tab
+    indent_size = 4
+
+    # Требование заголовка файла [IDE0073]
+    file_header_template = unset
+
+    # Соглашения написания кода .NET
+    
+      # Соглашения о рефакторинге кода .NET
+      
+        # Параметры рефакторинга кода .NET
+        
+          # Cпособ размещения операторов при оболочке строк кода во время рефакторинга.
+          dotnet_style_operator_placement_when_wrapping = beginning_of_line
+
+    # Правила стиля кода
+    
+      # Правила форматирования
+      
+        # Упорядочение Using [IDE0055]
+        dotnet_separate_import_directive_groups = false
+        dotnet_sort_system_directives_first = false
+
+      # Языковые и ненужные правила кода
+      
+        # Предпочтения для this и Me [IDE0003 и IDE0009]
+        dotnet_style_qualification_for_event = true:suggestion
+        dotnet_style_qualification_for_field = true:suggestion
+        dotnet_style_qualification_for_method = false:suggestion
+        dotnet_style_qualification_for_property = true:suggestion
+
+        # Использование инициализаторов объектов [IDE0017]
+        dotnet_style_object_initializer = true:silent
+
+        # Предпочтения для новых строк
+        dotnet_style_allow_multiple_blank_lines_experimental = true
+        dotnet_style_allow_statement_immediately_after_block_experimental = true
+
+        # Использование инициализаторов или выражений коллекции [IDE0028]
+        dotnet_style_collection_initializer = true:suggestion
+
+        # Проверка null и её упрощение [IDE0029, IDE0030 и IDE0270]
+        dotnet_style_coalesce_expression = false:suggestion
+        
+        # Использование распространения значений NULL [IDE0031]
+        dotnet_style_null_propagation = true:suggestion
+        
+        # Использование автоматически реализуемого свойства [IDE0032]
+        dotnet_style_prefer_auto_properties = true:silent
+        
+        # Используйте явно указанное имя кортежа [IDE0033]
+        dotnet_style_explicit_tuple_names = true:suggestion
+        
+        # Пространство имен не соответствует структуре папок [IDE0130]
+        dotnet_style_namespace_match_folder = true:suggestion
+        
+        # Использование составного назначения [IDE0054 и IDE0074]
+        dotnet_style_prefer_compound_assignment = false:silent
+        
+        # Добавить модификатор readonly (IDE0044)
+        dotnet_style_readonly_field = true
+        
+        # Используйте условное выражение для назначения [IDE0045]
+        dotnet_style_prefer_conditional_expression_over_assignment = false:silent
+        
+        # Использование условного выражения для возврата [IDE0046]
+        dotnet_style_prefer_conditional_expression_over_return = false:silent
+        
+        # Добавление явного приведения в цикл foreach [IDE0220]
+        dotnet_style_prefer_foreach_explicit_cast_in_source = when_strongly_typed
+        
+        # Использование выведенных имен элементов [IDE0037]
+        dotnet_style_prefer_inferred_anonymous_type_member_names = true:suggestion
+        dotnet_style_prefer_inferred_tuple_names = true:suggestion
+        
+        # Удалите неиспользуемый параметр [IDE0060]
+        dotnet_code_quality_unused_parameters = all:suggestion
+        
+        # Использование проверка "is null" [IDE0041]
+        dotnet_style_prefer_is_null_check_over_reference_equality_method = true:suggestion
+        
+        # Упрощение условного выражения [IDE0075]
+        dotnet_style_prefer_simplified_boolean_expressions = true:suggestion
+        
+        # Упрощение интерполяции [IDE0071]
+        dotnet_style_prefer_simplified_interpolation = true:suggestion
+
+        # Добавление модификаторов доступности [IDE0040]
+        dotnet_style_require_accessibility_modifiers = for_non_interface_members
+
+        # Удалить ненужное подавление (IDE0079)
+        dotnet_remove_unnecessary_suppression_exclusions = none
+
+        # Параметры круглых скобок [IDE0047 и IDE0048]
+        dotnet_style_parentheses_in_arithmetic_binary_operators = always_for_clarity
+        dotnet_style_parentheses_in_other_binary_operators = always_for_clarity
+        dotnet_style_parentheses_in_other_operators = never_if_unnecessary
+        dotnet_style_parentheses_in_relational_binary_operators = always_for_clarity
+
+        # Использовать ключевые слова языка вместо имен типов платформы для ссылок на типы [IDE0049]
+        dotnet_style_predefined_type_for_locals_parameters_members = true
+        dotnet_style_predefined_type_for_member_access = true
+tab_width = 4
+        
+  # Файлы C#
+  [*.cs]
+  
+  # Правила стиля кода
+    
+    # Правила форматирования
+    
+      # Упорядочение Using [IDE0055]
+      
+        # Новые строки
+        csharp_new_line_before_open_brace = all
+        csharp_new_line_before_else = true
+        csharp_new_line_before_catch = true
+        csharp_new_line_before_finally = true
+        csharp_new_line_before_members_in_object_initializers = false
+        csharp_new_line_before_members_in_anonymous_types = false
+        csharp_new_line_between_query_expression_clauses = true
+        
+        # Параметры отступа
+        csharp_indent_case_contents = true
+        csharp_indent_switch_labels = true
+        csharp_indent_labels = no_change
+        csharp_indent_block_contents = true
+        csharp_indent_braces = false
+        csharp_indent_case_contents_when_block = false
+
+        # Параметры интервалов
+        csharp_space_after_cast = false
+        csharp_space_after_keywords_in_control_flow_statements = true
+        csharp_space_between_parentheses = false
+        csharp_space_before_colon_in_inheritance_clause = true
+        csharp_space_after_colon_in_inheritance_clause = true
+        csharp_space_around_binary_operators = ignore
+        csharp_space_between_method_declaration_parameter_list_parentheses = false
+        csharp_space_between_method_declaration_empty_parameter_list_parentheses = false
+        csharp_space_between_method_declaration_name_and_open_parenthesis = false
+        csharp_space_between_method_call_parameter_list_parentheses = false
+        csharp_space_between_method_call_empty_parameter_list_parentheses = false
+        csharp_space_between_method_call_name_and_opening_parenthesis = false
+        csharp_space_after_comma = true
+        csharp_space_before_comma = false
+        csharp_space_after_dot = false
+        csharp_space_before_dot = false
+        csharp_space_after_semicolon_in_for_statement = true
+        csharp_space_before_semicolon_in_for_statement = false
+        csharp_space_around_declaration_statements = false
+        csharp_space_before_open_square_brackets = false
+        csharp_space_between_empty_square_brackets = false
+        csharp_space_between_square_brackets = false 
+    
+        # Параметры переноса
+        csharp_preserve_single_line_statements = false
+        csharp_preserve_single_line_blocks = true
+    
+    # Языковые и ненужные правила кода
+    
+      # Предпочтения для var [IDE0007 и IDE0008]
+      csharp_style_var_elsewhere = false
+      csharp_style_var_for_built_in_types = false
+      csharp_style_var_when_type_is_apparent = false
+
+      # Используйте тело выражения для методов доступа [IDE0027]
+      csharp_style_expression_bodied_accessors = false
+      
+      # Используйте тело выражения для конструкторов [IDE0021]
+      csharp_style_expression_bodied_constructors = when_on_single_line
+      
+      # Используйте тело выражения для индексаторов  [IDE0026]
+      csharp_style_expression_bodied_indexers = when_on_single_line
+      
+      # Используйте тело выражения для лямбда-выражений [IDE0053]
+      csharp_style_expression_bodied_lambdas = when_on_single_line
+      
+      # Используйте тело выражения для локальных функций [IDE0061]
+      csharp_style_expression_bodied_local_functions = when_on_single_line
+      
+      # Используйте тело выражения для методов [IDE0022]
+      csharp_style_expression_bodied_methods = when_on_single_line
+      
+      # Используйте тело выражения для операторов [IDE0023 и IDE0024]
+      csharp_style_expression_bodied_operators = false
+      
+      # Используйте тело выражения для свойств [IDE0025]
+      csharp_style_expression_bodied_properties = when_on_single_line
+      
+      # Используйте сопоставление шаблонов, чтобы избежать "AS", за которым следует проверка значений NULL [IDE0019]
+      csharp_style_pattern_matching_over_as_with_null_check = true
+      
+      # Используйте сопоставление шаблонов, чтобы избежать проверки "is", за которой следует приведение [IDE0020 и IDE0038]
+      csharp_style_pattern_matching_over_is_with_cast_check = true
+      
+      # Упрощение шаблона свойств [IDE0170]
+      csharp_style_prefer_extended_property_pattern = true
+      
+      # Использование сопоставления шаблонов (оператор not) [IDE0083]
+      csharp_style_prefer_not_pattern = true
+      
+      # Использование сопоставления шаблонов [IDE0078 и IDE0260]
+      csharp_style_prefer_pattern_matching = true
+      csharp_style_pattern_matching_over_as_with_null_check = true
+      
+      # Использование выражения switch [IDE0066]
+      csharp_style_prefer_switch_expression = false
+      
+      # Использовать условный вызов делегата [IDE1005]
+      csharp_style_conditional_delegate_call = true:suggestion
+      
+      # Превращение локальной функции в статическую [IDE0062]
+      csharp_prefer_static_local_function = false
+      
+      # Предпочитаемый порядок расположения модификаторов Order [IDE0036]
+      csharp_preferred_modifier_order = public,private,protected,internal,file,static,extern,new,virtual,abstract,sealed,override,readonly,unsafe,required,volatile,async
+      
+      # Структуру можно сделать только для чтения [IDE0250]
+      csharp_style_prefer_readonly_struct = true
+      
+      # Элемент можно сделать "readonly" [IDE0251]
+      csharp_style_prefer_readonly_struct_member = false
+      
+      # Добавление фигурных скобок [IDE0011]
+      csharp_prefer_braces = when_multiline:suggestion
+      
+      # Использование простого оператора using [IDE0063]
+      csharp_prefer_simple_using_statement = false
+      
+      # Параметры объявления пространства имен [IDE0160 и IDE0161]
+      csharp_style_namespace_declarations = block_scoped
+      
+      # Удаление ненужного лямбда-выражения [IDE0200]
+      csharp_style_prefer_method_group_conversion = true
+      
+      # Использование основного конструктора [IDE0290]
+      csharp_style_prefer_primary_constructors = true
+      
+      # Преобразование в операторы верхнего уровня [IDE0210]
+      csharp_style_prefer_top_level_statements = true
+      
+      # Упрощение выражения default [IDE0034]
+      csharp_prefer_simple_default_expression = true:suggestion
+      
+      # Деконструируйте объявление переменной [IDE0042]
+      csharp_style_deconstructed_variable_declaration = false:suggestion
+      
+      # Упрощение выражения new [IDE0090]
+      csharp_style_implicit_object_creation_when_type_is_apparent = true:suggestion
+      
+      # Объявление встроенной переменной [IDE0018]
+      csharp_style_inlined_variable_declaration = true:suggestion
+      
+      # Используйте оператор index [IDE0056]
+      csharp_style_prefer_index_operator = true:suggestion
+      
+      # Используйте локальную функцию вместо лямбда-выражения [IDE0039]
+      csharp_style_prefer_local_over_anonymous_function = true:suggestion
+      
+      # Предпочитать проверка null проверка типа [IDE0150]
+      csharp_style_prefer_null_check_over_type_check = true:suggestion
+      
+      # Используйте оператор range [IDE0057]
+      csharp_style_prefer_range_operator = true:silent
+      
+      # Использование кортежа для переключения значений [IDE0180]
+      csharp_style_prefer_tuple_swap = true:suggestion
+      
+      # Использование строкового литерала UTF-8 [IDE0230]
+      csharp_style_prefer_utf8_string_literals = true:suggestion
+      
+      # Использование выражения throw [IDE0016]
+      csharp_style_throw_expression = false:suggestion
+      
+      # Удалите назначение лишних значений [IDE0059]
+      csharp_style_unused_value_assignment_preference = discard_variable:suggestion
+      
+      # Удалите ненужное значение выражения [IDE0058]
+      csharp_style_unused_value_expression_statement_preference = discard_variable:silent
+      
+      # Размещение директив using [IDE0065]
+      csharp_using_directive_placement = outside_namespace
+      
+      # Предпочтения для новых строк РАЗОБРАТЬСЯ, ЧТО ДЕЛАЮТ
+      csharp_style_allow_blank_line_after_colon_in_constructor_initializer_experimental = true
+      csharp_style_allow_blank_line_after_token_in_arrow_expression_clause_experimental = true
+      csharp_style_allow_blank_line_after_token_in_conditional_expression_experimental = true
+      csharp_style_allow_blank_lines_between_consecutive_braces_experimental = true
+      csharp_style_allow_embedded_statements_on_same_line_experimental = true
+      
+  #### Стили именования ####
+      
+    # Правила именования
+dotnet_naming_rule.interface_should_be_begins_with_i.severity = suggestion
+    dotnet_naming_rule.interface_should_be_begins_with_i.symbols = interface
+dotnet_naming_rule.interface_should_be_begins_with_i.style = begins_with_i
+      
+dotnet_naming_rule.types_should_be_pascal_case.severity = suggestion
+    dotnet_naming_rule.types_should_be_pascal_case.symbols = types
+dotnet_naming_rule.types_should_be_pascal_case.style = pascal_case
+      
+dotnet_naming_rule.non_field_members_should_be_pascal_case.severity = suggestion
+    dotnet_naming_rule.non_field_members_should_be_pascal_case.symbols = non_field_members
+dotnet_naming_rule.non_field_members_should_be_pascal_case.style = pascal_case
+      
+    # Спецификации символов  
+    dotnet_naming_symbols.interface.applicable_kinds = interface
+    dotnet_naming_symbols.interface.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+    dotnet_naming_symbols.interface.required_modifiers = 
+    
+    dotnet_naming_symbols.enum.applicable_kinds = enum
+    dotnet_naming_symbols.enum.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+    dotnet_naming_symbols.enum.required_modifiers = 
+    
+    dotnet_naming_symbols.types.applicable_kinds = class, struct, interface, enum
+    dotnet_naming_symbols.types.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+    dotnet_naming_symbols.types.required_modifiers = 
+    
+    dotnet_naming_symbols.non_field_members.applicable_kinds = property, event, method
+    dotnet_naming_symbols.non_field_members.applicable_accessibilities = public, internal, private, protected, protected_internal, private_protected
+    dotnet_naming_symbols.non_field_members.required_modifiers = 
+    
+    # Стили именования  
+    dotnet_naming_style.pascal_case.required_prefix = 
+    dotnet_naming_style.pascal_case.required_suffix = 
+    dotnet_naming_style.pascal_case.word_separator = 
+    dotnet_naming_style.pascal_case.capitalization = pascal_case
+    
+    dotnet_naming_style.begins_with_i.required_prefix = I
+    dotnet_naming_style.begins_with_i.required_suffix = 
+    dotnet_naming_style.begins_with_i.word_separator = 
+    dotnet_naming_style.begins_with_i.capitalization = pascal_case
+    
+    dotnet_naming_style.суффикс_enum.required_prefix = 
+    dotnet_naming_style.суффикс_enum.required_suffix = Enum
+    dotnet_naming_style.суффикс_enum.word_separator = 
+    dotnet_naming_style.суффикс_enum.capitalization = pascal_case  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
