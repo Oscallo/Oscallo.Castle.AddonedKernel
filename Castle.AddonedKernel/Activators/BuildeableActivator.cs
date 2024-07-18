@@ -35,7 +35,7 @@ namespace Castle.AddonedKernel.Activators
 
             foreach (BuilderElement element in preResolvedElements)
             {
-                if (Model.Implementation.IsAssignableTo(element.AbstractionType) == true)
+                if (this.Model.Implementation.IsAssignableTo(element.AbstractionType) == true)
                 {
                     foreach (CalleableMethodInfo calleableMethodInfo in element.CalleableMethodInfos.Where(x => x.MethodCallTypeEnum == CalleableMethodCallTypeEnum.PreResolve))
                     {
