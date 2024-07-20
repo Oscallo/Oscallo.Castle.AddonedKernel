@@ -15,6 +15,9 @@
 
 namespace Castle.AddonedKernel.Activators
 {
+	/// <summary>
+	/// Для какой сущности вызвать метод
+	/// </summary>
     public enum CalleableMethodTypeEnum
     {
         Static,

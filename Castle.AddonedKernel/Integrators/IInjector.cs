@@ -15,7 +15,8 @@
 
 namespace Castle.AddonedKernel.Integrators
 {
-    public interface IInjector : IRegistrar, IContainerRegistrar, IResolver
+
+	public interface IInjector : IRegistrar, IContainerRegistrar, IResolver
     {
 
     }

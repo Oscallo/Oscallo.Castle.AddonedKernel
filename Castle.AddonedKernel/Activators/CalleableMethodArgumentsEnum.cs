@@ -15,6 +15,9 @@
 
 namespace Castle.AddonedKernel.Activators
 {
+	/// <summary>
+	/// Аргументы, вызываемого метода
+	/// </summary>
     public enum CalleableMethodArgumentsEnum
     {
         FromInjector,

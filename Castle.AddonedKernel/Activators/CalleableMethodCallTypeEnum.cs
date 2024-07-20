@@ -15,6 +15,9 @@
 
 namespace Castle.AddonedKernel.Activators
 {
+	/// <summary>
+	/// Состояние, когда необходимо вызвать метод
+	/// </summary>
     public enum CalleableMethodCallTypeEnum
     {
         PreResolve,

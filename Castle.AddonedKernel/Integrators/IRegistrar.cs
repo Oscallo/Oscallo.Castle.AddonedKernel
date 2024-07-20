@@ -20,15 +20,32 @@ using System;
 
 namespace Castle.AddonedKernel.Integrators
 {
+	/// <summary>
+	/// Контракт, гарантирующий, что сущность будет иметь функцмонал регистрации зависимостей
+	/// </summary>
     public interface IRegistrar : ILifeCyrcleSupport, IDisposable
     {
+		/// <summary>
+		/// Регистрация 
+		/// </summary>
+		/// <param name="registrations">Аргументы</param>
         void Register(params IRegistration[] registrations);
 
-        void RegisterIfAbsent<T>(params IRegistration[] registrations);
+		/// <summary>
+		/// Регистрация, при отсутствии сущности
+		/// </summary>
+		/// <typeparam name="T">Регистрируемая абстракция</typeparam>
+		/// <param name="registrations">Аргументы</param>
+		void RegisterIfAbsent<T>(params IRegistration[] registrations);
 
         void AddFacility<TFacility>() where TFacility : IFacility, new();
 
-        bool HasComponent<T>();
+		/// <summary>
+		/// Проверка компонента на наличие в списке зарегистрированных
+		/// </summary>
+		/// <typeparam name="T">Регистрируемая абстракция</typeparam>
+		/// <returns></returns>
+		bool HasComponent<T>();
 
         bool HasFacility<TFacility>() where TFacility : IFacility, new();
 

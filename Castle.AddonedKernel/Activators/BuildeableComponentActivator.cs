@@ -23,12 +23,25 @@ using System.Linq;
 
 namespace Castle.AddonedKernel.Activators
 {
+	/// <summary>
+	/// Активатор, вызывающий методы, предустановленные в <seealso cref="Builder"/>
+	/// </summary>
     public class BuildeableComponentActivator : DefaultComponentActivator
     {
-        public static Builder Builder => BuildeableComponentActivatorFacility.Builder;
+		/// <summary>
+		/// Активный <seealso cref="Builder"/>
+		/// </summary>
+		public static Builder Builder => BuildeableComponentActivatorFacility.Builder;
 
         public BuildeableComponentActivator(ComponentModel model, IKernelInternal kernel, ComponentInstanceDelegate onCreation, ComponentInstanceDelegate onDestruction) : base(model, kernel, onCreation, onDestruction) { }
 
+		/// <summary>
+		/// Метод создания экземпляра объекта
+		/// </summary>
+		/// <param name="context"></param>
+		/// <param name="candidate"></param>
+		/// <param name="arguments"></param>
+		/// <returns>Экземпляр объекта</returns>
         protected override object CreateInstance(CreationContext context, ConstructorCandidate candidate, object[] arguments)
         {
             ReadOnlyCollection<BuilderElement> preResolvedElements = Builder.PreResolvedElements;
@@ -62,6 +75,13 @@ namespace Castle.AddonedKernel.Activators
             return component;
         }
 
+		/// <summary>
+		/// Вызов метода
+		/// </summary>
+		/// <param name="calleableMethodInfo">Информация о методе</param>
+		/// <param name="activatorArguments">Аргуметы активатора</param>
+		/// <param name="createableComponent">Объект, для которого вызываются методы</param>
+		/// <exception cref="IndexOutOfRangeException">Выход за границы перечисления</exception>
         private void Invoke(CalleableMethodInfo calleableMethodInfo, object[] activatorArguments, object? createableComponent = null)
         {
             object? component;
@@ -103,6 +123,13 @@ namespace Castle.AddonedKernel.Activators
             calleableMethodInfo.MethodInfo.Invoke(component, parameters);
         }
 
+		/// <summary>
+		/// Пересоздание объекта
+		/// </summary>
+		/// <param name="context"></param>
+		/// <param name="candidate"></param>
+		/// <param name="arguments"></param>
+		/// <returns></returns>
         private object RecreateInstance(CreationContext context, ConstructorCandidate candidate, object[] arguments)
         {
             candidate = SelectEligibleConstructor(context);

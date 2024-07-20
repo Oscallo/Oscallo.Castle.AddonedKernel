@@ -17,6 +17,9 @@ using System.Windows;
 
 namespace Castle.AddonedKernel.LifeCyrcle
 {
+	/// <summary>
+	/// Контракт, гарантирующий сущестование метода, который необходимо вызвать при закрытии приложения
+	/// </summary>
     public interface IExiteable
     {
         void OnExit(ExitEventArgs e);
