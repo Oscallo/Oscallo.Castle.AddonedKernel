@@ -68,9 +68,9 @@ namespace Castle.AddonedKernel.Activators
             { return calleableMethodInfos.AsReadOnly(); }
         }
 
-        public bool HavePreResolvedMethods => GetPreResolvedMethods(this._CalleableMethodInfos).Count() != 0;
+        public bool HavePreResolvedMethods => GetPreResolvedMethods(this._CalleableMethodInfos).Any();
 
-        public bool HaveAfterResolvedMethods => GetAfterResolvedMethods(this._CalleableMethodInfos).Count() != 0;
+        public bool HaveAfterResolvedMethods => GetAfterResolvedMethods(this._CalleableMethodInfos).Any();
 
         private IEnumerable<CalleableMethodInfo> GetPreResolvedMethods(List<CalleableMethodInfo>? calleableMethodInfos) => GetResolvedMethods(calleableMethodInfos, CalleableMethodCallTypeEnum.PreResolve);
 
