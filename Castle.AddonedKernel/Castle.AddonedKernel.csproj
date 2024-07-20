@@ -12,6 +12,8 @@
     <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
     <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
     <NeutralLanguage>ru</NeutralLanguage>
+    <Copyright>Copyright 2024 Oscallo</Copyright>
+    <PackageProjectUrl>https://github.com/Oscallo/Castle.AddonedKernel</PackageProjectUrl>
   </PropertyGroup>
 
   <ItemGroup>
