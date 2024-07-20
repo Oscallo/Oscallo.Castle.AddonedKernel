@@ -30,12 +30,12 @@ namespace Castle.AddonedKernel.Activators
 
         internal Type? AbstractionType
         {
-            get { return _AbstractionType; }
+            get { return this._AbstractionType; }
         }
 
         public ReadOnlyCollection<CalleableMethodInfo>? CalleableMethodInfos
         {
-            get { return CastToReadOnlyCollection(_CalleableMethodInfos); }
+            get { return CastToReadOnlyCollection(this._CalleableMethodInfos); }
         }
 
         public BuilderElement(Type abstractionType, List<CalleableMethodInfo>? calleableMethodInfos)
@@ -64,8 +64,7 @@ namespace Castle.AddonedKernel.Activators
         {
             if (calleableMethodInfos == null)
                 return null;
-            else
-            { return calleableMethodInfos.AsReadOnly(); }
+            else { return calleableMethodInfos.AsReadOnly(); }
         }
 
         public bool HavePreResolvedMethods => GetPreResolvedMethods(this._CalleableMethodInfos).Any();
