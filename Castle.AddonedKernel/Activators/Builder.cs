@@ -46,7 +46,7 @@ namespace Castle.AddonedKernel.Activators
 
             foreach (BuilderElement element in realizedBuilderElement)
             {
-                realizedTypes.Add(element.ToType());
+                realizedTypes.Add(element.GetIncludedType());
             }
 
             return realizedTypes.AsReadOnly();

@@ -47,6 +47,7 @@ namespace Castle.AddonedKernel.Activators
         public BuilderElement(Type abstractionType) : this(abstractionType, null) { }
 
         public Type ToType()
+        public Type GetIncludedType()
         {
             if (this._AbstractionType == null)
                 throw new NullReferenceException();
