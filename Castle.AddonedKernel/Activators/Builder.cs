@@ -59,11 +59,8 @@ namespace Castle.AddonedKernel.Activators
             else
             {
                 BuilderElement existedBuilderElement = this._RealizedElements.Where(x => x.AbstractionType == builderElement.AbstractionType).First();
-                IEnumerable<CalleableMethodInfo>? differentsInLists = GetDifferentsInLists(builderElement.CalleableMethodInfos, existedBuilderElement.CalleableMethodInfos);
-				if (differentsInLists == null || differentsInLists.Any() == false)
-				{ 
-				
-				} 
+                IEnumerable<CalleableMethodInfo>? differentsInLists = GetDifferentsInCollections(builderElement.CalleableMethodInfos, existedBuilderElement.CalleableMethodInfos);
+				if (differentsInLists == null || differentsInLists.Any() == false) { } 
                 else
                 {
                     foreach (CalleableMethodInfo calleableMethodInfo in differentsInLists)
@@ -75,6 +72,7 @@ namespace Castle.AddonedKernel.Activators
         }
 
         private IEnumerable<CalleableMethodInfo>? GetDifferentsInLists(ReadOnlyCollection<CalleableMethodInfo>? addeableMethodInfos, ReadOnlyCollection<CalleableMethodInfo>? existeableMethodInfos)
+        private IEnumerable<CalleableMethodInfo>? GetDifferentsInCollections(ReadOnlyCollection<CalleableMethodInfo>? addeableMethodInfos, ReadOnlyCollection<CalleableMethodInfo>? existeableMethodInfos)
         {
             if (addeableMethodInfos == null && existeableMethodInfos == null)
                 return null;
