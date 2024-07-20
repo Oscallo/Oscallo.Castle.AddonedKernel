@@ -53,9 +53,9 @@ namespace Castle.AddonedKernel.Demo
 
 		private void Integrate(IRegistrar injector)
 		{
-			BuildeableActivatorFacility.Builder = GenerateBuilder(injector, BuildeableActivatorFacility.Builder);
+			BuildeableComponentActivatorFacility.Builder = GenerateBuilder(injector, BuildeableComponentActivatorFacility.Builder);
 
-			injector.AddFacilityIfAbsent<BuildeableActivatorFacility>();
+			injector.AddFacilityIfAbsent<BuildeableComponentActivatorFacility>();
 
 			injector.RegisterIfAbsent<IUpperOrderClass>(Component.For<IUpperOrderClass>().ImplementedBy<UpperOrderClass>().LifeStyle.Singleton);
 		}

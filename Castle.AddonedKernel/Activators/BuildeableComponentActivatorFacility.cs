@@ -19,7 +19,7 @@ using System;
 
 namespace Castle.AddonedKernel.Activators
 {
-    public class BuildeableActivatorFacility : AbstractFacility
+    public class BuildeableComponentActivatorFacility : AbstractFacility
     {
         private static Builder? _Builder;
 
@@ -35,7 +35,7 @@ namespace Castle.AddonedKernel.Activators
             }
         }
 
-        public BuildeableActivatorFacility() { }
+        public BuildeableComponentActivatorFacility() { }
 
         protected override void Init()
         {
@@ -50,11 +50,11 @@ namespace Castle.AddonedKernel.Activators
                 {
                     foreach (Type realizedType in Builder.RealizedTypes)
                     {
-                        bool isRealized = realizedType.IsAssignableFrom(modelServiceType);
+                        bool isRealized = realizedType.IsAssignableFrom(model.Implementation);
 
-                        if (model.CustomComponentActivator == null)
+                        if ((model.CustomComponentActivator == null) && (isRealized == true))
                         {
-                            model.CustomComponentActivator = typeof(BuildeableActivator);
+                            model.CustomComponentActivator = typeof(BuildeableComponentActivator);
                             return;
                         }
                     }

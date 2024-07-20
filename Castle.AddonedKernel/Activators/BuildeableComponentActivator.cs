@@ -23,11 +23,11 @@ using System.Linq;
 
 namespace Castle.AddonedKernel.Activators
 {
-    public class BuildeableActivator : DefaultComponentActivator
+    public class BuildeableComponentActivator : DefaultComponentActivator
     {
-        public static Builder Builder => BuildeableActivatorFacility.Builder;
+        public static Builder Builder => BuildeableComponentActivatorFacility.Builder;
 
-        public BuildeableActivator(ComponentModel model, IKernelInternal kernel, ComponentInstanceDelegate onCreation, ComponentInstanceDelegate onDestruction) : base(model, kernel, onCreation, onDestruction) { }
+        public BuildeableComponentActivator(ComponentModel model, IKernelInternal kernel, ComponentInstanceDelegate onCreation, ComponentInstanceDelegate onDestruction) : base(model, kernel, onCreation, onDestruction) { }
 
         protected override object CreateInstance(CreationContext context, ConstructorCandidate candidate, object[] arguments)
         {
