@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <Company>Oscallo</Company>
-    <Version>0.8.0</Version>
+    <Version>0.8.1</Version>
     <Title>Castle.AddonedKernel</Title>
     <RepositoryUrl>https://github.com/Oscallo/Castle.AddonedKernel</RepositoryUrl>
     <PackageTags>castle-windsor, window</PackageTags>
