@@ -94,25 +94,6 @@ namespace Castle.AddonedKernel.Demo.DI
 			}
 		}
 
-		void IRegistrar.RegisterWithDependencies<TAbs, TReal>(params IRegistration[] registrations) 
-		{
-			IRegistrar dIRegistrar = this;
-
-			Type IIntegratorType = typeof(IIntegrator);
-			string IIntegratorMethodName = nameof(IIntegrator.Integrate);
-
-			MethodInfo? methodInfo = IIntegratorType.GetMethod(IIntegratorMethodName);
-
-			if (methodInfo == null)
-			{ throw new NullReferenceException(); }
-
-			object[] parametersArray = new object[] { this };
-
-			methodInfo.Invoke(new TReal(), parametersArray);
-
-			dIRegistrar.RegisterIfAbsent<TAbs>(registrations);
-		}
-
 		void IContainerRegistrar.AddChildContainer(IWindsorContainer windsorContainer) => this._WindsorContainer.AddChildContainer(windsorContainer);
 
 		void IContainerRegistrar.RemoveChildContainer(IWindsorContainer windsorContainer) => this._WindsorContainer.RemoveChildContainer(windsorContainer);

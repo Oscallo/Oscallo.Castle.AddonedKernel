@@ -18,11 +18,20 @@ using System.Reflection;
 
 namespace Castle.AddonedKernel.Activators
 {
+	/// <summary>
+	/// Структура, описывающая метод
+	/// </summary>
     [DebuggerDisplay("{MethodInfo.ToString()} | {MethodTypeEnum.ToString()}")]
     public struct CalleableMethodInfo
     {
+		/// <summary>
+		/// Информация о методе
+		/// </summary>
         public MethodInfo MethodInfo { get; set; }
 
+		/// <summary>
+		/// Аргуметы метода
+		/// </summary>
         public object[]? Arguments { get; set; }
 
         public CalleableMethodCallTypeEnum MethodCallTypeEnum { get; set; }

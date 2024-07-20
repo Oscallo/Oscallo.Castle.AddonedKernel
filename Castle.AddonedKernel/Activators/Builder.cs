@@ -20,15 +20,30 @@ using System.Linq;
 
 namespace Castle.AddonedKernel.Activators
 {
+	/// <summary>
+	/// Строитель, отвечающий за элементы активатора
+	/// </summary>
     public sealed class Builder
     {
-        private List<BuilderElement> _RealizedElements { get; init; } = new();
+		/// <summary>
+		/// Реализуемые элементы
+		/// </summary>
+		private List<BuilderElement> _RealizedElements { get; init; } = new();
 
-        public ReadOnlyCollection<Type> RealizedTypes => CastToTypeOnlyCollection(this._RealizedElements);
+		/// <summary>
+		/// Список всех типов
+		/// </summary>
+		public ReadOnlyCollection<Type> RealizedTypes => CastToTypeOnlyCollection(this._RealizedElements);
 
+		/// <summary>
+		/// Элементы, которые будут обработаны перед созданием объекта
+		/// </summary>
         public ReadOnlyCollection<BuilderElement> PreResolvedElements => GetPreResolvedElements(this._RealizedElements);
 
-        public ReadOnlyCollection<BuilderElement> AfterResolvedElements => GetAfterResolvedElements(this._RealizedElements);
+		/// <summary>
+		/// Элементы, которые будут обработаны после создания объекта
+		/// </summary>
+		public ReadOnlyCollection<BuilderElement> AfterResolvedElements => GetAfterResolvedElements(this._RealizedElements);
 
         public Builder(BuilderElement builderElement)
         {
@@ -40,18 +55,27 @@ namespace Castle.AddonedKernel.Activators
 
         }
 
+		/// <summary>
+		/// Преобразование в коллекцию для чтения
+		/// </summary>
+		/// <param name="realizedBuilderElement">Список реализуемых элементов</param>
+		/// <returns></returns>
         private ReadOnlyCollection<Type> CastToTypeOnlyCollection(List<BuilderElement> realizedBuilderElement)
         {
             List<Type> realizedTypes = new();
 
             foreach (BuilderElement element in realizedBuilderElement)
             {
-                realizedTypes.Add(element.ToType());
+                realizedTypes.Add(element.GetIncludedType());
             }
 
             return realizedTypes.AsReadOnly();
         }
 
+		/// <summary>
+		/// Добавить новый элемент
+		/// </summary>
+		/// <param name="builderElement">Новый обрабатываемый элемент</param>
         public void Add(BuilderElement builderElement)
         {
             if (this._RealizedElements.Where(x => x.AbstractionType == builderElement.AbstractionType).Any() == false)
@@ -59,11 +83,8 @@ namespace Castle.AddonedKernel.Activators
             else
             {
                 BuilderElement existedBuilderElement = this._RealizedElements.Where(x => x.AbstractionType == builderElement.AbstractionType).First();
-                IEnumerable<CalleableMethodInfo>? differentsInLists = GetDifferentsInLists(builderElement.CalleableMethodInfos, existedBuilderElement.CalleableMethodInfos);
-				if (differentsInLists == null || differentsInLists.Any() == false)
-				{ 
-				
-				} 
+                IEnumerable<CalleableMethodInfo>? differentsInLists = GetDifferentsInCollections(builderElement.CalleableMethodInfos, existedBuilderElement.CalleableMethodInfos);
+				if (differentsInLists == null || differentsInLists.Any() == false) { } 
                 else
                 {
                     foreach (CalleableMethodInfo calleableMethodInfo in differentsInLists)
@@ -74,7 +95,13 @@ namespace Castle.AddonedKernel.Activators
             }
         }
 
-        private IEnumerable<CalleableMethodInfo>? GetDifferentsInLists(ReadOnlyCollection<CalleableMethodInfo>? addeableMethodInfos, ReadOnlyCollection<CalleableMethodInfo>? existeableMethodInfos)
+		/// <summary>
+		/// Получить от в коллекциях
+		/// </summary>
+		/// <param name="addeableMethodInfos">Добавляемые методы</param>
+		/// <param name="existeableMethodInfos">Уже добавленные методы</param>
+		/// <returns>Отличия</returns>
+        private IEnumerable<CalleableMethodInfo>? GetDifferentsInCollections(ReadOnlyCollection<CalleableMethodInfo>? addeableMethodInfos, ReadOnlyCollection<CalleableMethodInfo>? existeableMethodInfos)
         {
             if (addeableMethodInfos == null && existeableMethodInfos == null)
                 return null;
@@ -84,7 +111,12 @@ namespace Castle.AddonedKernel.Activators
             }
         }
 
-        private ReadOnlyCollection<BuilderElement> GetPreResolvedElements(List<BuilderElement> realizedElements)
+		/// <summary>
+		/// Получить колекцию методов, вызываемых перед созданием объекта
+		/// </summary>
+		/// <param name="realizedElements">Список реализуемых элементов</param>
+		/// <returns>Коллекция элементов строителя</returns>
+		private ReadOnlyCollection<BuilderElement> GetPreResolvedElements(List<BuilderElement> realizedElements)
         {
             IEnumerable<BuilderElement> preresolvedElements = this._RealizedElements.Where(x => x.HavePreResolvedMethods == true);
             if (preresolvedElements.Any() == false)
@@ -95,7 +127,12 @@ namespace Castle.AddonedKernel.Activators
             }
         }
 
-        private ReadOnlyCollection<BuilderElement> GetAfterResolvedElements(List<BuilderElement> realizedElements)
+		/// <summary>
+		/// Получить колекцию методов, вызываемых после создания объекта
+		/// </summary>
+		/// <param name="realizedElements">Список реализуемых элементов</param>
+		/// <returns>Коллекция элементов строителя</returns>
+		private ReadOnlyCollection<BuilderElement> GetAfterResolvedElements(List<BuilderElement> realizedElements)
         {
             IEnumerable<BuilderElement> afterResolvedElements = this._RealizedElements.Where(x => x.HaveAfterResolvedMethods == true);
             if (afterResolvedElements.Any() == false)

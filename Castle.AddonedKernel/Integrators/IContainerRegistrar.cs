@@ -19,6 +19,9 @@ using System;
 
 namespace Castle.AddonedKernel.Integrators
 {
+	/// <summary>
+	/// Контракт, гарантирующий добавление и удаление дочернего контейнера
+	/// </summary>
     public interface IContainerRegistrar : ILifeCyrcleSupport, IDisposable
     {
         void AddChildContainer(IWindsorContainer windsorContainer);

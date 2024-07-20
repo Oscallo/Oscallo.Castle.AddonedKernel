@@ -19,8 +19,12 @@ using System;
 
 namespace Castle.AddonedKernel.Activators
 {
-    public class BuildeableActivatorFacility : AbstractFacility
+	/// <summary>
+	/// Сущность активатора
+	/// </summary>
+    public class BuildeableComponentActivatorFacility : AbstractFacility
     {
+
         private static Builder? _Builder;
 
         public static Builder? Builder
@@ -34,14 +38,21 @@ namespace Castle.AddonedKernel.Activators
                 }
             }
         }
+		
+        public BuildeableComponentActivatorFacility() { }
 
-        public BuildeableActivatorFacility() { }
-
+		/// <summary>
+		/// Инициализация
+		/// </summary>
         protected override void Init()
         {
             this.Kernel.ComponentModelCreated += Kernel_ComponentModelCreated;
         }
 
+		/// <summary>
+		/// Событие, срабатываемое при создании новой модели
+		/// </summary>
+		/// <param name="model"></param>
         private void Kernel_ComponentModelCreated(ComponentModel model)
         {
             if (Builder != null)
@@ -50,11 +61,11 @@ namespace Castle.AddonedKernel.Activators
                 {
                     foreach (Type realizedType in Builder.RealizedTypes)
                     {
-                        bool isRealized = realizedType.IsAssignableFrom(modelServiceType);
+                        bool isRealized = realizedType.IsAssignableFrom(model.Implementation);
 
-                        if (model.CustomComponentActivator == null)
+                        if ((model.CustomComponentActivator == null) && (isRealized == true))
                         {
-                            model.CustomComponentActivator = typeof(BuildeableActivator);
+                            model.CustomComponentActivator = typeof(BuildeableComponentActivator);
                             return;
                         }
                     }
@@ -62,6 +73,9 @@ namespace Castle.AddonedKernel.Activators
             }
         }
 
+		/// <summary>
+		/// Уничтожение
+		/// </summary>
         protected override void Dispose()
         {
             this.Kernel.ComponentModelCreated -= Kernel_ComponentModelCreated;

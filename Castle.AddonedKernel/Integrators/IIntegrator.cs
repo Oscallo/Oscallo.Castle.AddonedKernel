@@ -15,8 +15,15 @@
 
 namespace Castle.AddonedKernel.Integrators
 {
-    public interface IIntegrator
+	/// <summary>
+	/// Контракт, гарантирующий создание метода регистрации зависисмостей
+	/// </summary>
+	public interface IIntegrator
     {
+		/// <summary>
+		/// Регистрация зависимостей
+		/// </summary>
+		/// <param name="injector">Сущность, имеющая возможность регистрировать зависимости</param>
         public void Integrate(IRegistrar injector);
     }
 }

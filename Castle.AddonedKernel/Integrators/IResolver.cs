@@ -21,10 +21,20 @@ namespace Castle.AddonedKernel.Integrators
 {
     public interface IResolver : ILifeCyrcleSupport, IDisposable
     {
-        bool HasComponent<T>();
+		/// <summary>
+		/// Проверка компонента на наличие в списке зарегистрированных
+		/// </summary>
+		/// <typeparam name="T">Предположительно существующая абстракция</typeparam>
+		/// <returns></returns>
+		bool HasComponent<T>();
 
         bool HasFacility<TFacility>() where TFacility : IFacility, new();
 
+		/// <summary>
+		/// Получить абстрацию  
+		/// </summary>
+		/// <typeparam name="T">Абстрация</typeparam>
+		/// <returns>Экземпляр</returns>
         T Resolve<T>();
     }
 }

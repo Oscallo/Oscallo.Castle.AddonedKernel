@@ -17,7 +17,10 @@ using System.Windows;
 
 namespace Castle.AddonedKernel.LifeCyrcle
 {
-    public interface IStartupable
+	/// <summary>
+	/// Контракт, гарантирующий сущестование метода, который необходимо вызвать при создании приложения
+	/// </summary>
+	public interface IStartupable
     {
         void OnStartup(StartupEventArgs e);
     }
