@@ -24,8 +24,6 @@ namespace Castle.AddonedKernel.Integrators
     {
         void Register(params IRegistration[] registrations);
 
-        void RegisterWithDependencies<TAbs, TReal>(params IRegistration[] registrations) where TReal : TAbs, new();
-
         void RegisterIfAbsent<T>(params IRegistration[] registrations);
 
         void AddFacility<TFacility>() where TFacility : IFacility, new();
