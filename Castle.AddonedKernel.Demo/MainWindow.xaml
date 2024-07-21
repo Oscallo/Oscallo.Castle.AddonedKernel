@@ -7,6 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
-
+        <StackPanel Orientation="Vertical" Margin="10">
+            <Label Content="Лог действий" FontSize="24"/>
+            <TextBlock x:Name="logTb"  HorizontalAlignment="Stretch" TextWrapping="Wrap" Text="" VerticalAlignment="Stretch"/>
+        </StackPanel>
     </Grid>
 </Window>

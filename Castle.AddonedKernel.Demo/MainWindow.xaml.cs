@@ -13,6 +13,11 @@
  * limitations under the License.
  */
 
+using Castle.AddonedKernel.Demo.MVVM;
+using Castle.AddonedKernel.Demo.Services;
+using Castle.AddonedKernel.Integrators;
+using Castle.MicroKernel.Registration;
+using System;
 using System.Windows;
 
 namespace Castle.AddonedKernel.Demo
@@ -20,11 +25,34 @@ namespace Castle.AddonedKernel.Demo
 	/// <summary>
 	/// Interaction logic for MainWindow.xaml
 	/// </summary>
-	public partial class MainWindow : Window
-    {
-        public MainWindow()
+	public partial class MainWindow : Window, IMainWindow
+	{
+		private readonly IEventeableLogger? _EventeableLogger;
+
+		public MainWindow()
         {
             InitializeComponent();
         }
-    }
+
+		public MainWindow(IEventeableLogger eventeableLogger)
+		{
+			InitializeComponent();
+
+			this._EventeableLogger = eventeableLogger;
+
+			this.logTb.Text = this._EventeableLogger.GetAllMessages();
+
+			this._EventeableLogger.Notify += _EventeableLogger_Notify;
+		}
+
+		private void _EventeableLogger_Notify(string message)
+		{
+			this.logTb.Text += message;
+		}
+
+		void IIntegrator.Integrate(IRegistrar injector) 
+		{
+			injector.RegisterIfAbsent<IEventeableLogger>(Component.For<IEventeableLogger>().ImplementedBy<EventeableLogger>().LifeStyle.Singleton);
+		}
+	}
 }
