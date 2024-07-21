@@ -33,8 +33,8 @@ namespace Castle.AddonedKernel.Demo.IntegrableClasses
 
 		public void Integrate(IRegistrar injector) 
 		{
-			injector.Register(Component.For<IMiddleOrderWithDepClass>().ImplementedBy<MiddleOrderWithDepClass>().LifeStyle.Singleton);
-			injector.Register(Component.For<IMiddleOrderWithoutDepClass>().ImplementedBy<MiddleOrderWithoutDepClass>().LifeStyle.Singleton);
+			injector.RegisterIfAbsent<IMiddleOrderWithDepClass>(Component.For<IMiddleOrderWithDepClass>().ImplementedBy<MiddleOrderWithDepClass>().LifeStyle.Singleton);
+			injector.RegisterIfAbsent<IMiddleOrderWithoutDepClass>(Component.For<IMiddleOrderWithoutDepClass>().ImplementedBy<MiddleOrderWithoutDepClass>().LifeStyle.Singleton);
 		}
 	}
 }

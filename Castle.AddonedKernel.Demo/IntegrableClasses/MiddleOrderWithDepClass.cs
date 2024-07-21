@@ -22,7 +22,7 @@ namespace Castle.AddonedKernel.Demo.IntegrableClasses
 	{
 		public void Integrate(IRegistrar injector) 
 		{
-			injector.Register(Component.For<ILowerOrderClass>().ImplementedBy<LowerOrderClass>().LifeStyle.Singleton);
+			injector.RegisterIfAbsent<ILowerOrderClass>(Component.For<ILowerOrderClass>().ImplementedBy<LowerOrderClass>().LifeStyle.Singleton);
 		}
 	}
 }
