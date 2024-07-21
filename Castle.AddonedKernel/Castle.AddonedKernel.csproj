@@ -14,6 +14,7 @@
     <NeutralLanguage>ru</NeutralLanguage>
     <Copyright>Copyright 2024 Oscallo</Copyright>
     <PackageProjectUrl>https://github.com/Oscallo/Castle.AddonedKernel</PackageProjectUrl>
+    <Description>Дополнение к библиотеке Castle.Windstor, позволяющее добавлять вызываемые автоматически методы на основе интерфейсов.</Description>
   </PropertyGroup>
 
   <ItemGroup>
