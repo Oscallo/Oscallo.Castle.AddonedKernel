@@ -16,6 +16,8 @@
 using Castle.AddonedKernel.Activators;
 using Castle.AddonedKernel.Demo.DI;
 using Castle.AddonedKernel.Demo.IntegrableClasses;
+using Castle.AddonedKernel.Demo.MVVM;
+using Castle.AddonedKernel.Demo.Services;
 using Castle.AddonedKernel.Integrators;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
@@ -37,11 +39,19 @@ namespace Castle.AddonedKernel.Demo
 			WindsorContainer container = new();
 
 			Injector.Register(container, Component.For<IWindsorContainer>().Instance(container).LifeStyle.Singleton);
+			Injector.Register(container, Component.For<IEventeableLogger>().ImplementedBy<EventeableLogger>().LifeStyle.Singleton);
 			Injector.Register(container, Component.For<IInjector>().ImplementedBy<Injector>().LifeStyle.Singleton);
 
 			this._Injector = Injector.Resolve<IInjector>(container);
 
 			Integrate(this._Injector);
+
+			// Bug # 0001 https://github.com/users/Oscallo/projects/3?pane=issue&itemId=71677593
+			IMainWindow mainWindow = this._Injector.Resolve<IMainWindow>();
+
+			this.MainWindow = (Window)mainWindow;
+
+			this.MainWindow.Show();
 
 			Resolve(this._Injector);
 		}
@@ -56,6 +66,8 @@ namespace Castle.AddonedKernel.Demo
 			BuildeableComponentActivatorFacility.Builder = GenerateBuilder(injector, BuildeableComponentActivatorFacility.Builder);
 
 			injector.AddFacilityIfAbsent<BuildeableComponentActivatorFacility>();
+
+			injector.RegisterIfAbsent<IMainWindow>(Component.For<IMainWindow>().ImplementedBy<MainWindow>().LifeStyle.Singleton);
 
 			injector.RegisterIfAbsent<IUpperOrderClass>(Component.For<IUpperOrderClass>().ImplementedBy<UpperOrderClass>().LifeStyle.Singleton);
 		}

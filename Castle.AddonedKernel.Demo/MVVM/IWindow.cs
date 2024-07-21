@@ -13,16 +13,10 @@
  * limitations under the License.
  */
 
-using Castle.AddonedKernel.Integrators;
-using Castle.MicroKernel.Registration;
-
-namespace Castle.AddonedKernel.Demo.IntegrableClasses
+namespace Castle.AddonedKernel.Demo.MVVM
 {
-	public class MiddleOrderWithDepClass : IMiddleOrderWithDepClass, IIntegrator
+	public interface IWindow
 	{
-		public void Integrate(IRegistrar injector) 
-		{
-			injector.RegisterIfAbsent<ILowerOrderClass>(Component.For<ILowerOrderClass>().ImplementedBy<LowerOrderClass>().LifeStyle.Singleton);
-		}
+		public void Show();
 	}
 }

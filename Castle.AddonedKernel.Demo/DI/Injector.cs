@@ -13,13 +13,13 @@
  * limitations under the License.
  */
 
+using Castle.AddonedKernel.Demo.Services;
 using Castle.AddonedKernel.Integrators;
 using Castle.AddonedKernel.LifeCyrcle;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using System;
-using System.Reflection;
 using System.Windows;
 
 namespace Castle.AddonedKernel.Demo.DI
@@ -27,10 +27,12 @@ namespace Castle.AddonedKernel.Demo.DI
 	public class Injector : IInjector
 	{
 		private readonly IWindsorContainer _WindsorContainer;
+		private readonly IEventeableLogger _EventeableLogger;
 
-		public Injector(IWindsorContainer windsorContainer)
+		public Injector(IWindsorContainer windsorContainer, IEventeableLogger eventeableLogger)
 		{
 			this._WindsorContainer = windsorContainer;
+			this._EventeableLogger = eventeableLogger;
 		}
 
 		public static void Register(IWindsorContainer windsorContainer, params IRegistration[] registrations)
@@ -43,7 +45,11 @@ namespace Castle.AddonedKernel.Demo.DI
 			return windsorContainer.Resolve<T>();
 		}
 
-		void IRegistrar.AddFacility<TFacility>() => this._WindsorContainer.AddFacility<TFacility>();
+		void IRegistrar.AddFacility<TFacility>()
+		{
+			this._EventeableLogger.Log("Добавлена сущность: " +  typeof(TFacility).FullName);
+			this._WindsorContainer.AddFacility<TFacility>();
+		}
 
 		void IRegistrar.AddFacilityIfAbsent<TFacility>() 
 		{
@@ -58,11 +64,13 @@ namespace Castle.AddonedKernel.Demo.DI
 
 		public bool HasComponent<T>()
 		{
+			this._EventeableLogger.Log("Проверка компонента: " +  typeof(T).FullName);
 			return this._WindsorContainer.Kernel.HasComponent(typeof(T));
 		}
 
 		public bool HasFacility<TFacility>() where TFacility : IFacility, new()
 		{
+			this._EventeableLogger.Log("Проверка сущности: " +  typeof(TFacility).FullName);
 			foreach (IFacility facility in this._WindsorContainer.Kernel.GetFacilities())
 			{
 				if (facility.GetType() == typeof(TFacility))
@@ -83,7 +91,14 @@ namespace Castle.AddonedKernel.Demo.DI
 			}
 		}
 
-		void IRegistrar.Register(params IRegistration[] registrations) => this._WindsorContainer.Register(registrations);
+		void IRegistrar.Register(params IRegistration[] registrations)
+		{
+			foreach (IRegistration item in registrations)
+			{
+				this._EventeableLogger.Log("Регистрация компонента: " +  item.ToString());
+			}
+			this._WindsorContainer.Register(registrations); 
+		}
 
 		void IRegistrar.RegisterIfAbsent<T>(params IRegistration[] registrations) 
 		{
