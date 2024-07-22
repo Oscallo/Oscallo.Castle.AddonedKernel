@@ -41,7 +41,20 @@ on:
   push:
     branches: [ "master" ]
   pull_request:
+    types: [ "closed" ]
     branches: [ "master" ]
+
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: "Log level"
+        required: true
+        default: "warning"
+        type: choice
+        options:
+          - info
+          - warning
+          - debug
 
 permissions:
   contents: read
@@ -59,7 +72,7 @@ jobs:
 
     env:
       Solution_Name: Castle.AddonedKernel.sln
-      Main_Project_Path: src/Castle.AddonedKernel/Castle.AddonedKernel.csproj                
+      Main_Project_Path: src/Castle.AddonedKernel/Castle.AddonedKernel.csproj               
 
     steps:
     - name: Checkout
