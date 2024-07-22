@@ -68,8 +68,8 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: Castle.AddonedKernel.sln
-      Main_Project_Path: src/Castle.AddonedKernel/Castle.AddonedKernel.csproj       
+      Solution_Name: Oscallo.Castle.AddonedKernel.sln
+      Main_Project_Path: src/Oscallo.Castle.AddonedKernel/Oscallo.Castle.AddonedKernel.csproj       
       Package_Path: C:\Packages
 
     steps:
