@@ -58,10 +58,9 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: Castle.AddonedKernel.sln                                                                    # Замените на имя вашего решения, например MyWpfApp.sln.
-      Test_Project_Path: your-test-project-path                                                                  # Замените путь к вашему тестовому проекту, например MyWpfApp.Tests\MyWpfApp.Tests.csproj.
-      Wap_Project_Directory: /src/Castle.AddonedKernel/                                                          # Замените каталогом проекта Wap относительно решения, т. е. MyWpfApp.Package.
-      Wap_Project_Path: Castle.AddonedKernel/src/Castle.AddonedKernel/Castle.AddonedKernel.csproj                # Замените на путь к вашему Wap-проекту, т. е. MyWpf.App.Package\MyWpfApp.Package.wapproj.
+      Solution_Name: Castle.AddonedKernel.sln
+      Solution_Path: Castle.AddonedKernel/Castle.AddonedKernel.sln
+      Main_Project_Path: src/Castle.AddonedKernel/Castle.AddonedKernel.csproj                
 
     steps:
     - name: Checkout
@@ -75,47 +74,18 @@ jobs:
       with:
         dotnet-version: 8.0.x
 
-    # Добавьте MSBuild в PATH: https://github.com/microsoft/setup-msbuild
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v2
-
     # Выполнить все модульные тесты в решении.
     # - name: Execute unit tests
-    #  run: dotnet test
+    #   run: dotnet test
 
-    #  Восстановите приложение, чтобы заполнить папку obj идентификаторами RuntimeIdentifiers
-    # - name: Restore the application
-    #   run: msbuild $env:Solution_Name /t:Restore /p:Configuration=$env:Configuration
-    #   env:
-    #     Configuration: ${{ matrix.configuration }}
+    - name: Install dependencies
+      run: dotnet restore ${{ env.Solution_Path }}
 
-    # Декодируйте PFX в кодировке Base 64 и сохраните Signing_Certificate.
-    # - name: Decode the pfx
-    #   run: |
-    #     $pfx_cert_byte = [System.Convert]::FromBase64String("${{ secrets.Base64_Encoded_Pfx }}")
-    #     $certificatePath = Join-Path -Path $env:Wap_Project_Directory -ChildPath GitHubActionsWorkflow.pfx
-    #     [IO.File]::WriteAllBytes("$certificatePath", $pfx_cert_byte)
+    - name: Build
+      run: dotnet build ${{ env.Main_Project_Path }} --configuration Release --no-restore
 
-    #  Создайте пакет приложения, создав и упаковав проект упаковки приложений Windows.
-    # - name: Create the app package
-    #   run: msbuild $env:Wap_Project_Path /p:Configuration=$env:Configuration /p:UapAppxPackageBuildMode=$env:Appx_Package_Build_Mode /p:AppxBundle=$env:Appx_Bundle /p:PackageCertificateKeyFile=GitHubActionsWorkflow.pfx /p:PackageCertificatePassword=${{ secrets.Pfx_Key }}
-    #   env:
-    #     Appx_Bundle: Always
-    #     Appx_Bundle_Platforms: x86|x64
-    #     Appx_Package_Build_Mode: StoreUpload
-    #     Configuration: ${{ matrix.configuration }}
-
-    # Удалить PFX
-    # - name: Remove the pfx
-    #   run: Remove-Item -path $env:Wap_Project_Directory\GitHubActionsWorkflow.pfx
-
-    # Загрузите пакет MSIX: https://github.com/marketplace/actions/upload-a-build-artifact.
-    #- name: Upload build artifacts
-    #  uses: actions/upload-artifact@v3
-    # with:
-    #   name: MSIX Package
-    #   path: ${{ env.Wap_Project_Directory }}\AppPackages
-
+    - name: Build the NuGet package
+      run: dotnet pack ${{ env.Main_Project_Path }} --configuration Release --output ${{env.DOTNET_ROOT}}\Package
 
     - name: Publish NuGet Package
       run: dotnet nuget push ${{env.DOTNET_ROOT}}\Package\*.nupkg --api-key ${{ secrets.NUGET_SECRET_KEY }} --source https://api.nuget.org/v3/index.json --skip-duplicate
