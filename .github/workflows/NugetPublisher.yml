@@ -72,7 +72,8 @@ jobs:
 
     env:
       Solution_Name: Castle.AddonedKernel.sln
-      Main_Project_Path: src/Castle.AddonedKernel/Castle.AddonedKernel.csproj               
+      Main_Project_Path: src/Castle.AddonedKernel/Castle.AddonedKernel.csproj       
+      Package_Path: C:\Packages
 
     steps:
     - name: Checkout
@@ -97,7 +98,7 @@ jobs:
       run: dotnet build ${{env.Main_Project_Path}} --configuration Release --no-restore
 
     - name: Build the NuGet package
-      run: dotnet pack ${{env.Main_Project_Path}} --configuration Release --output ${{env.DOTNET_ROOT}}\Package
+      run: dotnet pack ${{env.Main_Project_Path}} --configuration Release --output C:\Packages
 
     - name: Publish NuGet Package
-      run: dotnet nuget push ${{env.DOTNET_ROOT}}\Package\*.nupkg --api-key ${{secrets.NUGET_SECRET_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push C:\Packages\*.nupkg --api-key ${{secrets.NUGET_SECRET_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
