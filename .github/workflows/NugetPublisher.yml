@@ -38,11 +38,8 @@
 name: .NET Core Desktop
 
 on:
-  push:
-    branches: [ "master" ]
-  pull_request:
-    types: [ "closed" ]
-    branches: [ "master" ]
+  release:
+    types: [published]
 
   workflow_dispatch:
     inputs:
@@ -71,8 +68,8 @@ jobs:
                              # https://help.github.com/en/actions/reference/workflow-syntax-for-github-actions#jobsjob_idruns-on
 
     env:
-      Solution_Name: Castle.AddonedKernel.sln
-      Main_Project_Path: src/Castle.AddonedKernel/Castle.AddonedKernel.csproj       
+      Solution_Name: Oscallo.Castle.AddonedKernel.sln
+      Main_Project_Path: src/Oscallo.Castle.AddonedKernel/Oscallo.Castle.AddonedKernel.csproj       
       Package_Path: C:\Packages
 
     steps:
@@ -92,13 +89,13 @@ jobs:
     #   run: dotnet test
 
     - name: Install dependencies
-      run: dotnet restore ${{env.Solution_Name}}
+      run: dotnet restore ${{ env.Solution_Name }}
 
     - name: Build
-      run: dotnet build ${{env.Main_Project_Path}} --configuration Release --no-restore
+      run: dotnet build ${{ env.Main_Project_Path }} --configuration Release --no-restore
 
     - name: Build the NuGet package
-      run: dotnet pack ${{env.Main_Project_Path}} --configuration Release --output C:\Packages
+      run: dotnet pack ${{ env.Main_Project_Path }} --configuration Release --output C:\Packages
 
     - name: Publish NuGet Package
-      run: dotnet nuget push C:\Packages\*.nupkg --api-key ${{secrets.NUGET_SECRET_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push C:\Packages\*.nupkg --api-key ${{ secrets.NUGET_SECRET_KEY }} --no-symbols --source https://api.nuget.org/v3/index.json --skip-duplicate
