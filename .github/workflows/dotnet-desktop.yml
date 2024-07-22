@@ -106,8 +106,8 @@ jobs:
     #     Configuration: ${{ matrix.configuration }}
 
     # Удалить PFX
-    - name: Remove the pfx
-      run: Remove-Item -path $env:Wap_Project_Directory\GitHubActionsWorkflow.pfx
+    # - name: Remove the pfx
+    #   run: Remove-Item -path $env:Wap_Project_Directory\GitHubActionsWorkflow.pfx
 
     # Загрузите пакет MSIX: https://github.com/marketplace/actions/upload-a-build-artifact.
     #- name: Upload build artifacts
