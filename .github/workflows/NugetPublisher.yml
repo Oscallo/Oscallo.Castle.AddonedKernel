@@ -101,4 +101,4 @@ jobs:
       run: dotnet pack ${{env.Main_Project_Path}} --configuration Release --output C:\Packages
 
     - name: Publish NuGet Package
-      run: dotnet nuget push C:\Packages\*.nupkg --api-key ${{secrets.NUGET_SECRET_KEY}} --source https://api.nuget.org/v3/index.json --skip-duplicate
+      run: dotnet nuget push C:\Packages\*.nupkg --api-key ${{secrets.NUGET_SECRET_KEY}} --no-symbols --source https://api.nuget.org/v3/index.json --skip-duplicate
