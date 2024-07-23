@@ -1,5 +1,8 @@
 # Oscallo Castle AddonedKernel
 
+![NuGet Downloads](https://img.shields.io/nuget/dt/Oscallo.Castle.AddonedKernel)
+![NuGet Version](https://img.shields.io/nuget/v/Oscallo.Castle.AddonedKernel)
+
 RU: Дополнение к библиотеке Castle.Windstor, позволяющее добавлять вызываемые автоматически методы на основе интерфейсов.  
 EN: An addition to the Castle.Windstor library that allows you to add automatically called methods based on interfaces.
 
@@ -65,6 +68,8 @@ Cake
 ```
 
 ## Использование
+
+[![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SoftCircuits.Silk.svg?style=flat-square)](https://www.nuget.org/packages/SoftCircuits.Silk/)
 
 RU: 1. [Установка](#установка) библиотеки выбранным способом  
 EN: 1. [Install](#установка) libraries in the chosen way

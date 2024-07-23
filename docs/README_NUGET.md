@@ -1,6 +1,6 @@
 # Oscallo Castle AddonedKernel
 
-RU: Дополнение к библиотеке Castle.Windstor, позволяющее добавлять вызываемые автоматически методы на основе интерфейсов.
+RU: Дополнение к библиотеке Castle.Windstor, позволяющее добавлять вызываемые автоматически методы на основе интерфейсов.  
 EN: Extension to the Castle.Windstor library is enabled by automatically called interface-based methods.
 
 ## Пример использования (Example of use)
