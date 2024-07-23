@@ -93,7 +93,7 @@ public class Resolver : IResolver
 WindsorContainer container = new();
 ```
 
-4. Для простоты рекомендуется реализовать в классах из пункта 2 статические методы
+4. Для простоты рекомендуется реализовать в классах из пункта 2 статических метода
 
 ``` cs
 public static void Register(IWindsorContainer windsorContainer, params IRegistration[] registrations)
