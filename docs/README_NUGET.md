@@ -1,11 +1,11 @@
 # Oscallo Castle AddonedKernel
 
-RU: Дополнение к библиотеке Castle.Windstor, позволяющее добавлять вызываемые автоматически методы на основе интерфейсов.
+RU: Р”РѕРїРѕР»РЅРµРЅРёРµ Рє Р±РёР±Р»РёРѕС‚РµРєРµ Castle.Windstor, РїРѕР·РІРѕР»СЏСЋС‰РµРµ РґРѕР±Р°РІР»СЏС‚СЊ РІС‹Р·С‹РІР°РµРјС‹Рµ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРё РјРµС‚РѕРґС‹ РЅР° РѕСЃРЅРѕРІРµ РёРЅС‚РµСЂС„РµР№СЃРѕРІ.
 EN: Extension to the Castle.Windstor library is enabled by automatically called interface-based methods.
 
-## Пример использования (Example of use)
+## РџСЂРёРјРµСЂ РёСЃРїРѕР»СЊР·РѕРІР°РЅРёСЏ (Example of use)
 
-RU: 1. Необходимо реализовать класс, наследуемый ```IInjector```. Опционально возможно реализовать классы, наследуемые от ```IResolver``` и ```IRegistrar```  
+RU: 1. РќРµРѕР±С…РѕРґРёРјРѕ СЂРµР°Р»РёР·РѕРІР°С‚СЊ РєР»Р°СЃСЃ, РЅР°СЃР»РµРґСѓРµРјС‹Р№ ```IInjector```. РћРїС†РёРѕРЅР°Р»СЊРЅРѕ РІРѕР·РјРѕР¶РЅРѕ СЂРµР°Р»РёР·РѕРІР°С‚СЊ РєР»Р°СЃСЃС‹, РЅР°СЃР»РµРґСѓРµРјС‹Рµ РѕС‚ ```IResolver``` Рё ```IRegistrar```  
 EN: 1. You need to implement a class that inherits from ```IInjector```. Optionally, it is possible to implement classes that inherit from ```IResolver``` and ```IRegistrar```
 
 ``` cs
@@ -15,7 +15,7 @@ public class Injector : IInjector
 }
 ```
 
-RU: или же   
+RU: РёР»Рё Р¶Рµ   
 EN: or
 
 ``` cs
@@ -30,14 +30,14 @@ public class Resolver : IResolver
 }
 ```
 
-RU: 2. Создать экземпляр контейнера   
+RU: 2. РЎРѕР·РґР°С‚СЊ СЌРєР·РµРјРїР»СЏСЂ РєРѕРЅС‚РµР№РЅРµСЂР°   
 EN: 2. Create a container instance
 
 ``` cs
 WindsorContainer container = new();
 ```
 
-RU: 3. Для простоты рекомендуется реализовать в классах из пункта 2 статических метода  
+RU: 3. Р”Р»СЏ РїСЂРѕСЃС‚РѕС‚С‹ СЂРµРєРѕРјРµРЅРґСѓРµС‚СЃСЏ СЂРµР°Р»РёР·РѕРІР°С‚СЊ РІ РєР»Р°СЃСЃР°С… РёР· РїСѓРЅРєС‚Р° 2 СЃС‚Р°С‚РёС‡РµСЃРєРёС… РјРµС‚РѕРґР°  
 EN: 3. For simplicity, it is recommended to implement static methods in classes from point 2
 
 ``` cs
@@ -52,11 +52,11 @@ public static T Resolve<T>(IWindsorContainer windsorContainer)
 }
 ```
 
-RU: Подготовительный этап закончен.  
+RU: РџРѕРґРіРѕС‚РѕРІРёС‚РµР»СЊРЅС‹Р№ СЌС‚Р°Рї Р·Р°РєРѕРЅС‡РµРЅ.  
 
-4. Необходимо создать ```Builder```:
+4. РќРµРѕР±С…РѕРґРёРјРѕ СЃРѕР·РґР°С‚СЊ ```Builder```:
 
-4.1 Создадим список будущих методов, вызываемых у интерфейса.  
+4.1 РЎРѕР·РґР°РґРёРј СЃРїРёСЃРѕРє Р±СѓРґСѓС‰РёС… РјРµС‚РѕРґРѕРІ, РІС‹Р·С‹РІР°РµРјС‹С… Сѓ РёРЅС‚РµСЂС„РµР№СЃР°.  
 
 EN: The preparatory stage is over.  
 
@@ -67,12 +67,12 @@ EN: The preparatory stage is over.
 ``` cs
 List<CalleableMethodInfo> methodInfos = new();
 ```
-RU: 4.2 Необходимо заполнить информацию о методе для типа:
+RU: 4.2 РќРµРѕР±С…РѕРґРёРјРѕ Р·Р°РїРѕР»РЅРёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РјРµС‚РѕРґРµ РґР»СЏ С‚РёРїР°:
 
-4.2.1 Создаем массив объектов, в массив передаем необходимые аргументы метода
+4.2.1 РЎРѕР·РґР°РµРј РјР°СЃСЃРёРІ РѕР±СЉРµРєС‚РѕРІ, РІ РјР°СЃСЃРёРІ РїРµСЂРµРґР°РµРј РЅРµРѕР±С…РѕРґРёРјС‹Рµ Р°СЂРіСѓРјРµРЅС‚С‹ РјРµС‚РѕРґР°
 
-Далее разберем на основе интерфейса автоматической интеграции.
-Для автоматической интеграции необходим сам объект класса, наследуемого от ```IRegistrar```, он и передается в массив.   
+Р”Р°Р»РµРµ СЂР°Р·Р±РµСЂРµРј РЅР° РѕСЃРЅРѕРІРµ РёРЅС‚РµСЂС„РµР№СЃР° Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕР№ РёРЅС‚РµРіСЂР°С†РёРё.
+Р”Р»СЏ Р°РІС‚РѕРјР°С‚РёС‡РµСЃРєРѕР№ РёРЅС‚РµРіСЂР°С†РёРё РЅРµРѕР±С…РѕРґРёРј СЃР°Рј РѕР±СЉРµРєС‚ РєР»Р°СЃСЃР°, РЅР°СЃР»РµРґСѓРµРјРѕРіРѕ РѕС‚ ```IRegistrar```, РѕРЅ Рё РїРµСЂРµРґР°РµС‚СЃСЏ РІ РјР°СЃСЃРёРІ.   
 
 EN: 4.2 It is necessary to fill in the method information for the type:
 
@@ -85,8 +85,8 @@ For automatic integration, the object of the class itself, inherited from ```IRe
 object[] parametersArray = new object[] { injector };
 ```
 
-RU: 4.2.2 Создаем информацию о методе
-```IIntegrator``` - контракт, гарантирующий создание метода регистрации зависимостей, он содержит лишь один метод ```void Integrate(IRegistrar injector)```  
+RU: 4.2.2 РЎРѕР·РґР°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ РјРµС‚РѕРґРµ
+```IIntegrator``` - РєРѕРЅС‚СЂР°РєС‚, РіР°СЂР°РЅС‚РёСЂСѓСЋС‰РёР№ СЃРѕР·РґР°РЅРёРµ РјРµС‚РѕРґР° СЂРµРіРёСЃС‚СЂР°С†РёРё Р·Р°РІРёСЃРёРјРѕСЃС‚РµР№, РѕРЅ СЃРѕРґРµСЂР¶РёС‚ Р»РёС€СЊ РѕРґРёРЅ РјРµС‚РѕРґ ```void Integrate(IRegistrar injector)```  
 
 EN: 4.2.2 Create information about the method
 ```IIntegrator``` is a contract that guarantees the creation of a dependency registration method; it contains only one method ```void Integrate(IRegistrar injector)```
@@ -95,26 +95,26 @@ EN: 4.2.2 Create information about the method
 MethodInfo methodInfo = typeof(IIntegrator).GetMethod(nameof(IIntegrator.Integrate));
 ```
 
-RU: 4.2.3 Создаем структуру, описывающую алгоритм действий, для ```Builder```  
+RU: 4.2.3 РЎРѕР·РґР°РµРј СЃС‚СЂСѓРєС‚СѓСЂСѓ, РѕРїРёСЃС‹РІР°СЋС‰СѓСЋ Р°Р»РіРѕСЂРёС‚Рј РґРµР№СЃС‚РІРёР№, РґР»СЏ ```Builder```  
 
 EN: 4.2.3 Create a structure describing the algorithm of actions for ```Builder``
 
 ``` cs
 CalleableMethodInfo calleableMethodInfo = new() { MethodCallTypeEnum = CalleableMethodCallTypeEnum.PreResolve, MethodTypeEnum = CalleableMethodTypeEnum.Examplar, MethodInfo = methodInfo, Arguments = parametersArray, MethodArgumentsEnum = CalleableMethodArgumentsEnum.FromCalleabeMethod };
 ```
-RU: Далее разберем, что было передано при создании  
-```MethodCallTypeEnum``` - Сущность, указывающая когда будет выполнен метод.  
-```MethodTypeEnum``` - Сущность, указывающая где будет выполнен метод.   
-```MethodInfo``` - информация о методе из пункта 5.2.2  
-```Arguments``` - аргументы метода из пункта 5.2.1  
-```MethodArgumentsEnum``` - сущность, отвечающая за преобразование аргументов.  
+RU: Р”Р°Р»РµРµ СЂР°Р·Р±РµСЂРµРј, С‡С‚Рѕ Р±С‹Р»Рѕ РїРµСЂРµРґР°РЅРѕ РїСЂРё СЃРѕР·РґР°РЅРёРё  
+```MethodCallTypeEnum``` - РЎСѓС‰РЅРѕСЃС‚СЊ, СѓРєР°Р·С‹РІР°СЋС‰Р°СЏ РєРѕРіРґР° Р±СѓРґРµС‚ РІС‹РїРѕР»РЅРµРЅ РјРµС‚РѕРґ.  
+```MethodTypeEnum``` - РЎСѓС‰РЅРѕСЃС‚СЊ, СѓРєР°Р·С‹РІР°СЋС‰Р°СЏ РіРґРµ Р±СѓРґРµС‚ РІС‹РїРѕР»РЅРµРЅ РјРµС‚РѕРґ.   
+```MethodInfo``` - РёРЅС„РѕСЂРјР°С†РёСЏ Рѕ РјРµС‚РѕРґРµ РёР· РїСѓРЅРєС‚Р° 5.2.2  
+```Arguments``` - Р°СЂРіСѓРјРµРЅС‚С‹ РјРµС‚РѕРґР° РёР· РїСѓРЅРєС‚Р° 5.2.1  
+```MethodArgumentsEnum``` - СЃСѓС‰РЅРѕСЃС‚СЊ, РѕС‚РІРµС‡Р°СЋС‰Р°СЏ Р·Р° РїСЂРµРѕР±СЂР°Р·РѕРІР°РЅРёРµ Р°СЂРіСѓРјРµРЅС‚РѕРІ.  
 
-Имеет 3 состояния:  
-```CalleableMethodArgumentsEnum.FromInjector``` - использование аргументов, в чистом виде из ```Arguments``` 
-```CalleableMethodArgumentsEnum.FromInjectorWithComponent``` - аналогично ```CalleableMethodArgumentsEnum.FromInjector```, только сам компонент подставляется первым аргументом.  
-```CalleableMethodArgumentsEnum.FromCalleabeMethod``` - использование аргументов, подобраных активатором   
+РРјРµРµС‚ 3 СЃРѕСЃС‚РѕСЏРЅРёСЏ:  
+```CalleableMethodArgumentsEnum.FromInjector``` - РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ Р°СЂРіСѓРјРµРЅС‚РѕРІ, РІ С‡РёСЃС‚РѕРј РІРёРґРµ РёР· ```Arguments``` 
+```CalleableMethodArgumentsEnum.FromInjectorWithComponent``` - Р°РЅР°Р»РѕРіРёС‡РЅРѕ ```CalleableMethodArgumentsEnum.FromInjector```, С‚РѕР»СЊРєРѕ СЃР°Рј РєРѕРјРїРѕРЅРµРЅС‚ РїРѕРґСЃС‚Р°РІР»СЏРµС‚СЃСЏ РїРµСЂРІС‹Рј Р°СЂРіСѓРјРµРЅС‚РѕРј.  
+```CalleableMethodArgumentsEnum.FromCalleabeMethod``` - РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ Р°СЂРіСѓРјРµРЅС‚РѕРІ, РїРѕРґРѕР±СЂР°РЅС‹С… Р°РєС‚РёРІР°С‚РѕСЂРѕРј   
 
-4.2.4 Добавляем это в ранее созданный в пункте 5.1 список
+4.2.4 Р”РѕР±Р°РІР»СЏРµРј СЌС‚Рѕ РІ СЂР°РЅРµРµ СЃРѕР·РґР°РЅРЅС‹Р№ РІ РїСѓРЅРєС‚Рµ 5.1 СЃРїРёСЃРѕРє
 
 EN: Next, let's look at what was transferred during creation.  
 ```MethodCallTypeEnum``` - An entity indicating when the method will be executed.  
@@ -134,7 +134,7 @@ Has 3 states:
 methodInfos.Add(calleableMethodInfo);
 ```
 
-RU: 4.2.5 Создаем ```Builder``` или же добавляем в него новые элементы  
+RU: 4.2.5 РЎРѕР·РґР°РµРј ```Builder``` РёР»Рё Р¶Рµ РґРѕР±Р°РІР»СЏРµРј РІ РЅРµРіРѕ РЅРѕРІС‹Рµ СЌР»РµРјРµРЅС‚С‹  
 
 EN: 4.2.5 Create a ```Builder``` or add new elements to it
 
@@ -148,9 +148,9 @@ else
 	builder.Add(new BuilderElement(typeof(IIntegrator), methodInfos));
 }
 ```
-RU: Cам ```Builder``` хранится в статическом поле ```BuildeableComponentActivatorFacility.Builder```
+RU: CР°Рј ```Builder``` С…СЂР°РЅРёС‚СЃСЏ РІ СЃС‚Р°С‚РёС‡РµСЃРєРѕРј РїРѕР»Рµ ```BuildeableComponentActivatorFacility.Builder```
 
-4.2.6 Добавляем	```BuildeableComponentActivatorFacility```  
+4.2.6 Р”РѕР±Р°РІР»СЏРµРј	```BuildeableComponentActivatorFacility```  
 
 EN: The ```Builder``` itself is stored in the static field ```BuildeableComponentActivatorFacility.Builder```
 
@@ -160,6 +160,6 @@ EN: The ```Builder``` itself is stored in the static field ```BuildeableComponen
 injector.AddFacilityIfAbsent<BuildeableComponentActivatorFacility>();
 ```
 
-## Лицензия (License)
-RU: © 2024 Oscallo. Это бесплатное программное обеспечение, распространяемое в соответствии с лицензией [Apache 2.0](https://github.com/Oscallo/Castle.AddonedKernel?tab=Apache-2.0-1-ov-file).  
-EN: © 2024 Oscallo. This is free software distributed under the [Apache 2.0] license(https://github.com/Oscallo/Castle.AddonedKernel?tab=Apache-2.0-1-ov-file).
+## Р›РёС†РµРЅР·РёСЏ (License)
+RU: В© 2024 Oscallo. Р­С‚Рѕ Р±РµСЃРїР»Р°С‚РЅРѕРµ РїСЂРѕРіСЂР°РјРјРЅРѕРµ РѕР±РµСЃРїРµС‡РµРЅРёРµ, СЂР°СЃРїСЂРѕСЃС‚СЂР°РЅСЏРµРјРѕРµ РІ СЃРѕРѕС‚РІРµС‚СЃС‚РІРёРё СЃ Р»РёС†РµРЅР·РёРµР№В [Apache 2.0](https://github.com/Oscallo/Castle.AddonedKernel?tab=Apache-2.0-1-ov-file).  
+EN: В© 2024 Oscallo. This is free software distributed under the [Apache 2.0] license(https://github.com/Oscallo/Castle.AddonedKernel?tab=Apache-2.0-1-ov-file).
