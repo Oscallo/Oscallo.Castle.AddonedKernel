@@ -8,6 +8,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Элементы решен
 		.editorconfig = .editorconfig
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
+		docs\README_NUGET.md = docs\README_NUGET.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Oscallo.Castle.AddonedKernel", "src\Oscallo.Castle.AddonedKernel\Oscallo.Castle.AddonedKernel.csproj", "{2A862B1A-1236-4C38-9864-E4B90B20A4F5}"
