@@ -69,8 +69,6 @@ Cake
 
 ## Использование
 
-[![NuGet version (SoftCircuits.Silk)](https://img.shields.io/nuget/v/SoftCircuits.Silk.svg?style=flat-square)](https://www.nuget.org/packages/SoftCircuits.Silk/)
-
 RU: 1. [Установка](#установка) библиотеки выбранным способом  
 EN: 1. [Install](#установка) libraries in the chosen way
 
