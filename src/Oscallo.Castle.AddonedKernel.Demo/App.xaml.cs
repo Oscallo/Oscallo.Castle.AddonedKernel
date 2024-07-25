@@ -24,6 +24,7 @@ using Castle.Windsor;
 using System.Collections.Generic;
 using System.Reflection;
 using System.Windows;
+using Oscallo.Castle.AddonedKernel.IntegrableInterfaces;
 
 namespace Oscallo.Castle.AddonedKernel.Demo
 {

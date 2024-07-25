@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-using Oscallo.Castle.AddonedKernel.Integrators;
+using Oscallo.Castle.AddonedKernel.IntegrableInterfaces;
 
 namespace Oscallo.Castle.AddonedKernel.Demo.MVVM
 {

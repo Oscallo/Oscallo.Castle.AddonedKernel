@@ -13,17 +13,19 @@
  * limitations under the License.
  */
 
-namespace Oscallo.Castle.AddonedKernel.Integrators
+using Oscallo.Castle.AddonedKernel.Integrators;
+
+namespace Oscallo.Castle.AddonedKernel.IntegrableInterfaces
 {
 	/// <summary>
 	/// Контракт, гарантирующий создание метода регистрации зависисмостей
 	/// </summary>
 	public interface IIntegrator
-    {
+	{
 		/// <summary>
 		/// Регистрация зависимостей
 		/// </summary>
 		/// <param name="injector">Сущность, имеющая возможность регистрировать зависимости</param>
-        public void Integrate(IRegistrar injector);
-    }
+		public void Integrate(IRegistrar injector);
+	}
 }

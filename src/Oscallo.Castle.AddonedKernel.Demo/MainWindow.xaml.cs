@@ -16,6 +16,7 @@
 using Castle.MicroKernel.Registration;
 using Oscallo.Castle.AddonedKernel.Demo.MVVM;
 using Oscallo.Castle.AddonedKernel.Demo.Services;
+using Oscallo.Castle.AddonedKernel.IntegrableInterfaces;
 using Oscallo.Castle.AddonedKernel.Integrators;
 using System.Windows;
 
