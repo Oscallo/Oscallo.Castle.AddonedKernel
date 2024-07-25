@@ -13,15 +13,19 @@
  * limitations under the License.
  */
 
-using System.Windows;
+using Oscallo.Castle.AddonedKernel.Integrators;
 
-namespace Oscallo.Castle.AddonedKernel.LifeCyrcle
+namespace Oscallo.Castle.AddonedKernel.IntegrableInterfaces
 {
 	/// <summary>
-	/// Контракт, гарантирующий сущестование метода, который необходимо вызвать при закрытии приложения
+	/// Контракт, гарантирующий создание метода регистрации зависисмостей
 	/// </summary>
-    public interface IExiteable
-    {
-        void OnExit(ExitEventArgs e);
-    }
+	public interface IIntegrator
+	{
+		/// <summary>
+		/// Регистрация зависимостей
+		/// </summary>
+		/// <param name="injector">Сущность, имеющая возможность регистрировать зависимости</param>
+		public void Integrate(IRegistrar injector);
+	}
 }

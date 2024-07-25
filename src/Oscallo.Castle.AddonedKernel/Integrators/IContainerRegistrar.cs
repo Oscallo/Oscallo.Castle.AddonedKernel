@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-using Oscallo.Castle.AddonedKernel.LifeCyrcle;
 using Castle.Windsor;
 using System;
 
@@ -22,7 +21,7 @@ namespace Oscallo.Castle.AddonedKernel.Integrators
 	/// <summary>
 	/// Контракт, гарантирующий добавление и удаление дочернего контейнера
 	/// </summary>
-    public interface IContainerRegistrar : ILifeCyrcleSupport, IDisposable
+    public interface IContainerRegistrar : IDisposable
     {
         void AddChildContainer(IWindsorContainer windsorContainer);
 

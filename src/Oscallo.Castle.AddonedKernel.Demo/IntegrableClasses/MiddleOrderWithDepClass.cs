@@ -15,6 +15,7 @@
 
 using Oscallo.Castle.AddonedKernel.Integrators;
 using Castle.MicroKernel.Registration;
+using Oscallo.Castle.AddonedKernel.IntegrableInterfaces;
 
 namespace Oscallo.Castle.AddonedKernel.Demo.IntegrableClasses
 {

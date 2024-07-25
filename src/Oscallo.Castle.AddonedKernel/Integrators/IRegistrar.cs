@@ -13,7 +13,6 @@
  * limitations under the License.
  */
 
-using Oscallo.Castle.AddonedKernel.LifeCyrcle;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using System;
@@ -23,7 +22,7 @@ namespace Oscallo.Castle.AddonedKernel.Integrators
 	/// <summary>
 	/// Контракт, гарантирующий, что сущность будет иметь функцмонал регистрации зависимостей
 	/// </summary>
-    public interface IRegistrar : ILifeCyrcleSupport, IDisposable
+    public interface IRegistrar : IDisposable
     {
 		/// <summary>
 		/// Регистрация 
