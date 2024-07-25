@@ -15,7 +15,6 @@
 
 using Oscallo.Castle.AddonedKernel.Demo.Services;
 using Oscallo.Castle.AddonedKernel.Integrators;
-using Oscallo.Castle.AddonedKernel.LifeCyrcle;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
@@ -81,16 +80,6 @@ namespace Oscallo.Castle.AddonedKernel.Demo.DI
 			return false;
 		}
 
-		void IExiteable.OnExit(ExitEventArgs e) => Dispose();
-
-		void IStartupable.OnStartup(StartupEventArgs e) 
-		{
-			if (e.Args.Length != 0)
-			{
-				throw new NotImplementedException("Need override method");
-			}
-		}
-
 		void IRegistrar.Register(params IRegistration[] registrations)
 		{
 			foreach (IRegistration item in registrations)
@@ -118,11 +107,6 @@ namespace Oscallo.Castle.AddonedKernel.Demo.DI
 		public virtual void Dispose()
 		{
 			((IDisposable)this).Dispose();
-		}
-
-		public virtual void OnStartup(StartupEventArgs e)
-		{
-			((IStartupable)this).OnStartup(e);
 		}
 	}
 }

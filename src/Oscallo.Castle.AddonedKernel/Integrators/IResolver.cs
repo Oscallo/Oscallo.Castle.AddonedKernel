@@ -13,13 +13,12 @@
  * limitations under the License.
  */
 
-using Oscallo.Castle.AddonedKernel.LifeCyrcle;
 using Castle.MicroKernel;
 using System;
 
 namespace Oscallo.Castle.AddonedKernel.Integrators
 {
-    public interface IResolver : ILifeCyrcleSupport, IDisposable
+    public interface IResolver : IDisposable
     {
 		/// <summary>
 		/// Проверка компонента на наличие в списке зарегистрированных
