@@ -13,18 +13,11 @@
  * limitations under the License.
  */
 
-using Castle.Windsor;
-using System;
-
-namespace Oscallo.Castle.AddonedKernel.Integrators
+namespace Oscallo.Castle.AddonedKernel.Injectors
 {
-	/// <summary>
-	/// Контракт, гарантирующий добавление и удаление дочернего контейнера
-	/// </summary>
-    public interface IContainerRegistrar : IDisposable
-    {
-        void AddChildContainer(IWindsorContainer windsorContainer);
 
-        void RemoveChildContainer(IWindsorContainer windsorContainer);
+	public interface IInjector : IRegistrar, IContainerRegistrar, IResolver
+    {
+
     }
 }
