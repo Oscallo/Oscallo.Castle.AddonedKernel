@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <Company>Oscallo</Company>
-    <Version>0.9.01</Version>
+    <Version>0.9.02</Version>
     <Title>Oscallo.Castle.AddonedKernel</Title>
     <RepositoryUrl>https://github.com/Oscallo/Castle.AddonedKernel</RepositoryUrl>
     <PackageTags>castle-windsor, window</PackageTags>
