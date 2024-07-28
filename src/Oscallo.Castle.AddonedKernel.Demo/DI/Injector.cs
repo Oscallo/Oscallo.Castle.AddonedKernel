@@ -14,7 +14,7 @@
  */
 
 using Oscallo.Castle.AddonedKernel.Demo.Services;
-using Oscallo.Castle.AddonedKernel.Integrators;
+using Oscallo.Castle.AddonedKernel.Injectors;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;

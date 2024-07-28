@@ -18,7 +18,7 @@ using Oscallo.Castle.AddonedKernel.Demo.DI;
 using Oscallo.Castle.AddonedKernel.Demo.IntegrableClasses;
 using Oscallo.Castle.AddonedKernel.Demo.MVVM;
 using Oscallo.Castle.AddonedKernel.Demo.Services;
-using Oscallo.Castle.AddonedKernel.Integrators;
+using Oscallo.Castle.AddonedKernel.Injectors;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
 using System.Collections.Generic;

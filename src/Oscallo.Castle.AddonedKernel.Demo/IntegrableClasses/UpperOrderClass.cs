@@ -13,7 +13,7 @@
  * limitations under the License.
  */
 
-using Oscallo.Castle.AddonedKernel.Integrators;
+using Oscallo.Castle.AddonedKernel.Injectors;
 using Castle.MicroKernel.Registration;
 using Oscallo.Castle.AddonedKernel.IntegrableInterfaces;
 

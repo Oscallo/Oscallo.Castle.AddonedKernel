@@ -16,7 +16,7 @@
 using Castle.MicroKernel;
 using System;
 
-namespace Oscallo.Castle.AddonedKernel.Integrators
+namespace Oscallo.Castle.AddonedKernel.Injectors
 {
     public interface IResolver : IDisposable
     {

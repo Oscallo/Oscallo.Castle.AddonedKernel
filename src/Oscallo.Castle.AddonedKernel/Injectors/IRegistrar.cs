@@ -17,7 +17,7 @@ using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using System;
 
-namespace Oscallo.Castle.AddonedKernel.Integrators
+namespace Oscallo.Castle.AddonedKernel.Injectors
 {
 	/// <summary>
 	/// Контракт, гарантирующий, что сущность будет иметь функцмонал регистрации зависимостей
