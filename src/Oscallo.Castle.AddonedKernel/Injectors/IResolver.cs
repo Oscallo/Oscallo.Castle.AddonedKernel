@@ -25,15 +25,21 @@ namespace Oscallo.Castle.AddonedKernel.Injectors
 		/// </summary>
 		/// <typeparam name="T">Предположительно существующая абстракция</typeparam>
 		/// <returns></returns>
-		bool HasComponent<T>();
+		public bool HasComponent<T>();
 
-        bool HasFacility<TFacility>() where TFacility : IFacility, new();
+		public bool HasFacility<TFacility>() where TFacility : IFacility, new();
 
 		/// <summary>
 		/// Получить абстрацию  
 		/// </summary>
 		/// <typeparam name="T">Абстрация</typeparam>
 		/// <returns>Экземпляр</returns>
-        T Resolve<T>();
-    }
+		public T Resolve<T>();
+
+
+		public T Resolve<T>(Arguments arguments);
+
+
+		public T Resolve<T>(String key);
+	}
 }
