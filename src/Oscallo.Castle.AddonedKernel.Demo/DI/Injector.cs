@@ -13,13 +13,12 @@
  * limitations under the License.
  */
 
-using Oscallo.Castle.AddonedKernel.Demo.Services;
-using Oscallo.Castle.AddonedKernel.Injectors;
 using Castle.MicroKernel;
 using Castle.MicroKernel.Registration;
 using Castle.Windsor;
+using Oscallo.Castle.AddonedKernel.Demo.Services;
+using Oscallo.Castle.AddonedKernel.Injectors;
 using System;
-using System.Windows;
 
 namespace Oscallo.Castle.AddonedKernel.Demo.DI
 {
@@ -103,6 +102,10 @@ namespace Oscallo.Castle.AddonedKernel.Demo.DI
 		void IContainerRegistrar.RemoveChildContainer(IWindsorContainer windsorContainer) => this._WindsorContainer.RemoveChildContainer(windsorContainer);
 
 		T IResolver.Resolve<T>() => this._WindsorContainer.Resolve<T>();
+
+		T IResolver.Resolve<T>(string key) => this._WindsorContainer.Resolve<T>(key);
+
+		T IResolver.Resolve<T>(Arguments args) => this._WindsorContainer.Resolve<T>(args);
 
 		public virtual void Dispose()
 		{
