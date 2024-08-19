@@ -95,7 +95,7 @@ namespace Oscallo.Castle.AddonedKernel.Activators
             {
                 if (calleableMethodInfo.MethodCallTypeEnum == CalleableMethodCallTypeEnum.PreResolve)
                 {
-                    component = Activator.CreateInstance(this.Model.Implementation);
+                    component = Activator.CreateInstance(this.Model.Implementation, activatorArguments);
                 }
                 else
                 {
